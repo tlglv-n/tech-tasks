@@ -10,7 +10,7 @@ def make_request(url, max_retries=5, wait_time=3, timeout=10):
     while retries < max_retries:
         try:
             response = requests.get(url, timeout=timeout)
-            response.raise_for_status()  # Проверка успешности запроса
+            response.raise_for_status()  
             return response
         except requests.RequestException as e:
             print(f"Ошибка при запросе: {e}. Попытка {retries + 1} через {wait_time} секунд...")
@@ -76,7 +76,7 @@ def main():
             result_df = result_df.drop_duplicates(subset=['Наименование потенциального поставщика'])
             result_df.reset_index(drop=True, inplace=True)
             
-            result_df.to_excel('result.xlsx', index=False)  # Удален параметр encoding
+            result_df.to_excel('result.xlsx', index=False)  
             print("Данные успешно сохранены в файл result.xlsx")
         else:
             print("Не удалось собрать данные для записи.")
